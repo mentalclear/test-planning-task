@@ -88,7 +88,7 @@ describe('Router tests', () => {
     });
 
     describe('Negative Scenarios', () => {
-        describe('Apply template with invalid data', () => {            
+        describe('Create template with invalid data', () => {            
             it('should not create Router template with invalid data, report 400', async () => {
                 const routerName = 'router-01'
                 const response = await fetch(`${routerBaseUrl}${routerName}/template`, {
