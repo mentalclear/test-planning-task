@@ -1,0 +1,358 @@
+{
+	"info": {
+		"_postman_id": "b02e3e14-87f4-4cb0-a2b2-3e431e92ec79",
+		"name": "Thumper API testing collection",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "14081161"
+	},
+	"item": [
+		{
+			"name": "Router",
+			"item": [
+				{
+					"name": "Router configuration",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://thumper.example.org/api/v1/router/router-01/config",
+							"protocol": "https",
+							"host": [
+								"thumper",
+								"example",
+								"org"
+							],
+							"path": [
+								"api",
+								"v1",
+								"router",
+								"router-01",
+								"config"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Router reports",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://thumper.example.org/api/v1/router/router-01/reports",
+							"protocol": "https",
+							"host": [
+								"thumper",
+								"example",
+								"org"
+							],
+							"path": [
+								"api",
+								"v1",
+								"router",
+								"router-01",
+								"reports"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Router create template",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"hostname\": \"new-name-router-01\",\n    \"interfaces\": [\n        {\n            \"type\": \"gigabitEthernet\",    \n            \"name\": \"0/0\",            \n            \"networkIpAddress\": \"192.168.1.1\",\n            \"networkSubnetMask\": \"255.255.255.0\",\n            \"noShutdown\": true\n        },\n        {\n            \"type\": \"serial\",    \n            \"name\": \"0/0/0\",            \n            \"networkIpAddress\": \"10.1.1.1\",\n            \"networkSubnetMask\": \"255.255.255.0\",\n            \"noShutdown\": true\n        }\n    ],\n    \"gateway\": {\n        \"networkA\":\"0.0.0.0\",\n        \"networkB\":\"0.0.0.0\",\n        \"defaultGateway\": \"10.1.1.2\"\n    }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://thumper.example.org/api/v1/router/router-01/template",
+							"protocol": "https",
+							"host": [
+								"thumper",
+								"example",
+								"org"
+							],
+							"path": [
+								"api",
+								"v1",
+								"router",
+								"router-01",
+								"template"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Router apply template",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "https://thumper.example.org/api/v1/router/router-01/template?apply=true",
+							"protocol": "https",
+							"host": [
+								"thumper",
+								"example",
+								"org"
+							],
+							"path": [
+								"api",
+								"v1",
+								"router",
+								"router-01",
+								"template"
+							],
+							"query": [
+								{
+									"key": "apply",
+									"value": "true"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Switch",
+			"item": [
+				{
+					"name": "Switch configuration",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://thumper.example.org/api/v1/switch/switch-01/config",
+							"protocol": "https",
+							"host": [
+								"thumper",
+								"example",
+								"org"
+							],
+							"path": [
+								"api",
+								"v1",
+								"switch",
+								"switch-01",
+								"config"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Switch reports",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://thumper.example.org/api/v1/switch/switch-01/reports",
+							"protocol": "https",
+							"host": [
+								"thumper",
+								"example",
+								"org"
+							],
+							"path": [
+								"api",
+								"v1",
+								"switch",
+								"switch-01",
+								"reports"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Switch create template",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"hostname\": \"new-name-switch-01\",\n    \"interfaces\": [\n        {\n            \"type\": \"gigabitEthernet\",    \n            \"name\": \"0/1\",\n            \"switchportMode\": \"access\",\n            \"switchportAccess\": \"vlan 0/1\",\n            \"noShutdown\": true\n        },\n        {\n            \"type\": \"vlan\",    \n            \"name\": \"10\",\n            \"networkIpAddress\": \"192.168.1.1\",\n            \"networkSubnetMask\": \"255.255.255.0\",\n            \"noShutdown\": true\n        },\n        {\n            \"type\": \"vlan\",    \n            \"name\": \"20\",\n            \"networkIpAddress\": \"192.168.2.1\",\n            \"networkSubnetMask\": \"255.255.255.0\",\n            \"noShutdown\": true\n        }\n    ]    \n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://thumper.example.org/api/v1/switch/switch-01/template",
+							"protocol": "https",
+							"host": [
+								"thumper",
+								"example",
+								"org"
+							],
+							"path": [
+								"api",
+								"v1",
+								"switch",
+								"switch-01",
+								"template"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Switch apply template",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "https://thumper.example.org/api/v1/switch/switch-01/template?apply=true",
+							"protocol": "https",
+							"host": [
+								"thumper",
+								"example",
+								"org"
+							],
+							"path": [
+								"api",
+								"v1",
+								"switch",
+								"switch-01",
+								"template"
+							],
+							"query": [
+								{
+									"key": "apply",
+									"value": "true"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Firewall",
+			"item": [
+				{
+					"name": "Firewall configuration",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://thumper.example.org/api/v1/switch/switch-01/config",
+							"protocol": "https",
+							"host": [
+								"thumper",
+								"example",
+								"org"
+							],
+							"path": [
+								"api",
+								"v1",
+								"switch",
+								"switch-01",
+								"config"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Firewall reports",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://thumper.example.org/api/v1/firewall/firewall-01/reports",
+							"protocol": "https",
+							"host": [
+								"thumper",
+								"example",
+								"org"
+							],
+							"path": [
+								"api",
+								"v1",
+								"firewall",
+								"firewall-01",
+								"reports"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Firewall create template",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"hostname\": \"new-name-firewall-01\",\n    \"interfaces\": [\n        {            \n            \"name\": \"eth0\",         \n            \"networkIpAddress\": \"192.168.1.1/24\",\n            \"noShutdown\": true\n        },\n        {            \n            \"name\": \"eth1\",         \n            \"networkIpAddress\": \"10.1.1.1/24\",\n            \"noShutdown\": true\n        }\n    ],\n    \"access-lists\": [\n        {\n            \"direction\": \"outside-in\",\n            \"networkIpAddress\": \"192.168.1.2\",\n            \"networkPort\": \"80\",\n            \"noShutdown\": true\n        },\n        {\n            \"direction\": \"outside-in\",\n            \"networkIpAddress\": \"192.168.1.2\",\n            \"networkPort\": \"443\",\n            \"noShutdown\": true\n        },\n        {\n            \"direction\": \"inside-out\",\n            \"networkIpAddress\": \"any\",\n            \"networkPort\": \"22\"\n        },\n        {\n            \"direction\": \"inside-out\",\n            \"networkIpAddress\": \"any\",\n            \"networkPort\": \"80\"\n        }\n    ],\n    \"access-groups\": [\n        {\n            \"direction\": \"outside-in\",\n            \"interface\": \"eth0\"            \n        },\n        {\n            \"direction\": \"inside-out\",            \n            \"interface\": \"eth1\"\n        }\n    ]    \n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://thumper.example.org/api/v1/firewall/firewall-01/template",
+							"protocol": "https",
+							"host": [
+								"thumper",
+								"example",
+								"org"
+							],
+							"path": [
+								"api",
+								"v1",
+								"firewall",
+								"firewall-01",
+								"template"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Firewall apply template",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "https://thumper.example.org/api/v1/firewall/firewall-01/template?apply=true",
+							"protocol": "https",
+							"host": [
+								"thumper",
+								"example",
+								"org"
+							],
+							"path": [
+								"api",
+								"v1",
+								"firewall",
+								"firewall-01",
+								"template"
+							],
+							"query": [
+								{
+									"key": "apply",
+									"value": "true"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
