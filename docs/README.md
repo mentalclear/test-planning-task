@@ -1,6 +1,6 @@
 # Docs
 
-## Folders contents here:
+## Contents here:
 
 1. **TestCases** folder contains test cases for Router, Switch, and Firewall scenarios.  
         
