@@ -82,8 +82,8 @@ The GET device report request to Thumper API should succeed. 200 Ok should be re
         1. Provide non-supported names for interfaces. 
         (Per the specification allowed names are gigabitEthernet and serial, use imaginary names)  
     3. For IP address and/or Subnet Mask supply values that are out of range for:
-        1. For IP use 1, 2, 3, and all 4 octets that are out of range 0 - 255;   
-        2. For Net Mask use 1, 2, 3, and all 4 octets that are out of range 0 - 255;  
+        1. For IP use first, second, third, and all four octets that are out of range 1 - 255;   
+        2. For Net Mask use first, second, third, and all 4 octets that are out of range 0 - 255;  
         3. Combine wrong values for IP address and Subnet Mask.
     4. Skip the `exit` directive between template sections. 
     5. Don't provide `no shutdown` directive 
