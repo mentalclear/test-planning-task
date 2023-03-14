@@ -91,10 +91,6 @@ The GET device report request to Thumper API should succeed. 200 Ok should be re
         1. Don't provide source network information for `ip route`
         2. Don't provide default gateway address in `ip route`
     7. Put unsupported directives in different areas of the template body.
-    8. Break template structure like: 
-        1. Put host name in the end of the template
-        2. Declare `ip route` first
-        3. Different permutations.
 2. Send a POST request to Thumper API to create a Router template.  
 3. Verify the API response.
 4. Repeat this scenario with different permutations of the invalid template data.
@@ -102,7 +98,7 @@ The GET device report request to Thumper API should succeed. 200 Ok should be re
 #### Expected result:  
 With the invalid template data, the request to Thumper API should fail. 400 Bad Request should be returned. The response body should contain error message describing what went wrong. 
 
-**_Note_**: There are a lot of single test cases can be created from this combined test case, overall this one looks like a good candidate for data driven automated test case.  
+**_Note_**: There are a lot of single test cases can be created from this combined test case, it's a matter of preferences and company's standard. Overall this one looks like a good candidate for data driven automated test case.  
 
 
 ### Test Case 006 - _Trigger malformed Router Template application to the device_. 

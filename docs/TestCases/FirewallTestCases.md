@@ -8,12 +8,12 @@ _Therefore all the testing scenarios provided below are **strictly theoretical**
 ## Positive scenarios:
 
 
-### Test Case 001 - _Request Router configuration_. 
+### Test Case 001 - _Request Firewall configuration_. 
 
-**Preconditions:** _Testing environment is setup. Thumper is up and running. The Router is connected and operational_  
+**Preconditions:** _Testing environment is setup. Thumper is up and running. The Firewall is connected and operational_  
 
 #### Test Steps:  
-1. Send a GET request to Thumper API to get the Router's device configuration.  
+1. Send a GET request to Thumper API to get the Firewall's device configuration.  
 2. Verify the API response.
 3. Verify API response data has the device configuration.
 
@@ -22,13 +22,13 @@ The get device configuration request to Thumper API should succeed. 200 Ok shoul
 
 
 
-### Test Case 002 - _Trigger Router Template creation_. 
+### Test Case 002 - _Trigger Firewall Template creation_. 
 
-**Preconditions:** _Testing environment is setup. Thumper is up and running. The Router is connected and operational_  
+**Preconditions:** _Testing environment is setup. Thumper is up and running. The Firewall is connected and operational_  
 
 #### Test Steps:  
 1. Provide valid template data.
-2. Send a POST request to Thumper API to create a Router template.  
+2. Send a POST request to Thumper API to create a Firewall template.  
 3. Verify the API response.
 
 #### Expected result:  
@@ -36,12 +36,12 @@ With the valid template data, the request to Thumper API should succeed. 201 Cre
 
 
 
-### Test Case 003 - _Trigger Router Template application to the device_. 
+### Test Case 003 - _Trigger Firewall Template application to the device_. 
 
-**Preconditions:** _Testing environment is setup. Thumper is up and running. The Router is connected and operational. Router template has been created by sending appropriate request to the Thumper API in advance_  
+**Preconditions:** _Testing environment is setup. Thumper is up and running. The Firewall is connected and operational. Firewall template has been created by sending appropriate request to the Thumper API in advance_  
 
 #### Test Steps:  
-1. Send a POST request to Thumper API to apply the Router template.  
+1. Send a POST request to Thumper API to apply the Firewall template.  
 2. Verify the API response.
 3. Send a GET request to Thumper API to get device config and verify that the template has been applied. 
 
@@ -51,12 +51,12 @@ has been applied.
 
 
 
-### Test Case 004 - _Request Router device report_. 
+### Test Case 004 - _Request Firewall device report_. 
 
-**Preconditions:** _Testing environment is setup. Thumper is up and running. The Router is connected and operational_  
+**Preconditions:** _Testing environment is setup. Thumper is up and running. The Firewall is connected and operational_  
 
 #### Test Steps:  
-1. Send a GET request to Thumper API to get the Router's device report.  
+1. Send a GET request to Thumper API to get the Firewall's device report.  
 2. Verify the API response.
 3. Verify API response data has the device report.
 
@@ -68,9 +68,9 @@ The GET device report request to Thumper API should succeed. 200 Ok should be re
 ## Negative scenarios:
 
 
-### Test Case 005 - _Trigger Router Template creation with invalid template data_. 
+### Test Case 005 - _Trigger Firewall Template creation with invalid template data_. 
 
-**Preconditions:** _Testing environment is setup. Thumper is up and running. The Router is connected and operational_  
+**Preconditions:** _Testing environment is setup. Thumper is up and running. The Firewall is connected and operational_  
 
 #### Test Steps:  
 1. Provide invalid template data:
@@ -87,32 +87,31 @@ The GET device report request to Thumper API should succeed. 200 Ok should be re
         3. Combine wrong values for IP address and Subnet Mask.
     4. Skip the `exit` directive between template sections. 
     5. Don't provide `no shutdown` directive 
-    6. Gateway section:  
-        1. Don't provide source network information for `ip route`
-        2. Don't provide default gateway address in `ip route`
+    6. Access list and Access group section:  
+        1. Don't provide access list network `outside` information for `ip` and/or `port`
+        2. Don't provide access list network `inside` information for `ip` and/or `port`
+        3. Don't provide access group network `outside` information for `interface`
+        4. Don't provide access group network `inside` information for `interface`
+        5. Exercise different permutations of the above settings. 
     7. Put unsupported directives in different areas of the template body.
-    8. Break template structure like: 
-        1. Put host name in the end of the template
-        2. Declare `ip route` first
-        3. Different permutations.
-2. Send a POST request to Thumper API to create a Router template.  
+2. Send a POST request to Thumper API to create a Firewall template.  
 3. Verify the API response.
 4. Repeat this scenario with different permutations of the invalid template data.
 
 #### Expected result:  
 With the invalid template data, the request to Thumper API should fail. 400 Bad Request should be returned. The response body should contain error message describing what went wrong. 
 
-**_Note_**: There are a lot of single test cases can be created from this combined test case, overall this one looks like a good candidate for data driven automated test case.  
+**_Note_**: There are a lot of single test cases can be created from this combined test case, it's a matter of preferences and company's standard. Overall this one looks like a good candidate for data driven automated test case.  
 
 
-### Test Case 006 - _Trigger malformed Router Template application to the device_. 
+### Test Case 006 - _Trigger malformed Firewall Template application to the device_. 
 
-**Preconditions:** _Testing environment is setup. Thumper is up and running. The Router is connected and operational. Router template has been created by sending appropriate request to the Thumper API in advance_  
+**Preconditions:** _Testing environment is setup. Thumper is up and running. The Firewall is connected and operational. Firewall template has been created by sending appropriate request to the Thumper API in advance_  
 
 #### Test Steps:  
 1. Amend the values in the BackEnd so the template data is invalid
   (Not sure this is possible with current implementation, but I would consider this scenario)
-2. Send a POST request to Thumper API to apply the Router template.   
+2. Send a POST request to Thumper API to apply the Firewall template.   
 3. Verify the API response.
 4. Send a GET request to Thumper API to get device config and verify that the template has **NOT** been applied. 
 
